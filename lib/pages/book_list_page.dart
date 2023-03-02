@@ -4,16 +4,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class BookListPage extends StatelessWidget {
+class BookListPage extends StatefulWidget {
   const BookListPage({
     super.key,
     @PathParam('name') required this.name,
     @QueryParam() this.isGreen,
     @QueryParam() this.showName,
+    this.person,
+    // @QueryParam('person') this.person,
   });
   final String name;
+  final List<Person>? person;
   final bool? isGreen;
   final bool? showName;
+
+  @override
+  State<BookListPage> createState() => _BookListPageState();
+}
+
+class _BookListPageState extends State<BookListPage> {
+  Person? _person;
+  @override
+  void initState() {
+    if (widget.person != null) {
+      _person = widget.person?[0];
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +38,21 @@ class BookListPage extends StatelessWidget {
       body: ListView(
         children: [
           Text(
-            name,
+            widget.name,
             style: TextStyle(
-              color: isGreen ?? false ? Colors.green : Colors.black,
+              color: widget.isGreen ?? false ? Colors.green : Colors.black,
             ),
           ),
           Center(
             child: Text(
-              showName ?? false ? "Cavin" : "No name",
+              widget.person != null
+                  ? "Person not null ${_person?.name}"
+                  : "Person is null",
+            ),
+          ),
+          Center(
+            child: Text(
+              widget.showName ?? false ? "Cavin" : "No name",
             ),
           ),
           Center(
@@ -43,4 +67,9 @@ class BookListPage extends StatelessWidget {
       ),
     );
   }
+}
+
+class Person {
+  Person({this.name});
+  String? name;
 }

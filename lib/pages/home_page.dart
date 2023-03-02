@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route_demo/pages/book_list_page.dart';
 import 'package:auto_route_demo/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,20 @@ class HomePage extends StatelessWidget {
         children: [
           Center(
             child: ElevatedButton(
+              onPressed: () => context.navigateTo(
+                BookListRoute(
+                  name: 'cavin',
+                  // isGreen: true,
+                  // showName: false,
+                ),
+              ),
+              child: const Text(
+                "Navigate",
+              ),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
               onPressed: () => context.pushRoute(
                 BookListRoute(
                   name: 'cavin',
@@ -24,6 +39,40 @@ class HomePage extends StatelessWidget {
               ),
               child: const Text(
                 "Go to the Book Listing Screen",
+              ),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () => context.pushRoute(
+                BookListRoute(
+                  name: 'cavin',
+                  person: [
+                    Person(
+                      name: "hola person",
+                    ),
+                  ],
+                ),
+              ),
+              child: const Text(
+                "Pass class value",
+              ),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () => context.pushRoute(
+                BookListRoute(
+                  name: 'cavin',
+                  person: [
+                    Person(
+                      name: "hola person",
+                    ),
+                  ],
+                ),
+              ),
+              child: const Text(
+                "Pass class value in push mode",
               ),
             ),
           ),
