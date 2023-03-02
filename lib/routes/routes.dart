@@ -1,42 +1,42 @@
 import 'package:auto_route/annotations.dart';
-import 'package:auto_route_demo/pages/book_details_page.dart';
-import 'package:auto_route_demo/pages/book_list_page.dart';
-import 'package:auto_route_demo/pages/home_page.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/container.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/empty_router_widgets.dart';
+import 'package:auto_route_demo/pages/screens/home_details_screen.dart';
+import 'package:auto_route_demo/pages/screens/profile_details_screen.dart';
+import 'package:auto_route_demo/pages/tabs/home_tab.dart';
+import 'package:auto_route_demo/pages/tabs/main_tab.dart';
+import 'package:auto_route_demo/pages/tabs/profile_tab.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AutoRoute(
-      page: HomePage,
+      page: GroupPage,
       initial: true,
-      path: '/home',
+      path: '/',
+      children: [
+        AutoRoute(
+          page: EmptyRouterPage,
+          path: 'home',
+          name: 'HomeRouter',
+          children: [
+            AutoRoute(path: '', page: HomeTab),
+            AutoRoute(path: 'home-details', page: HomeDetailsPage),
+            RedirectRoute(path: '*', redirectTo: ''),
+          ],
+        ),
+        AutoRoute(
+          page: EmptyRouterPage,
+          path: 'profile',
+          name: 'ProfileRouter',
+          children: [
+            AutoRoute(path: '', page: ProfileTab),
+            AutoRoute(path: 'profile-details', page: ProfileDetailsPage),
+            RedirectRoute(path: '*', redirectTo: ''),
+          ],
+        ),
+      ],
     ),
-    AutoRoute(
-      page: BookListPage,
-      path: '/home/:name',
-      maintainState: true,
-    ),
-    AutoRoute(page: BookDetailsPage, path: '/details'),
-    AutoRoute(path: '/home/*', page: DemoPage),
-
-    // if the path does not match to home, it will redirect
-    RedirectRoute(path: '*', redirectTo: '/details')
   ],
 )
 class $AppRouter {}
-
-class DemoPage extends StatelessWidget {
-  const DemoPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("redirect is working"),
-      ),
-    );
-  }
-}
