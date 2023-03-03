@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route_demo/routes/routes.gr.dart';
@@ -8,40 +10,41 @@ class GroupPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Home Tab"),
-      ),
-      body: AutoTabsRouter(
-        routes: const [
-          HomeRouter(),
-          ProfileRouter(),
-        ],
-        duration: const Duration(milliseconds: 400),
-        builder: (context, child, animation) {
-          final tabsRouter = context.tabsRouter;
-          return Scaffold(
-            body: FadeTransition(
-              opacity: animation,
-              child: child,
+    return AutoTabsScaffold(
+      appBarBuilder: (context, tabsRouter) {
+        return AppBar(
+          title: tabsRouter.activeIndex == 0
+              ? const Text("Home Page")
+              : const Text("Profile Page"),
+        );
+      },
+      routes: const [
+        HomeRouter(),
+        ProfileRouter(),
+      ],
+      builder: (context, child, animation) {
+        return ScaleTransition(
+          scale: animation,
+          child: child,
+        );
+      },
+      bottomNavigationBuilder: (context, tabsRouter) {
+        return BottomNavigationBar(
+          onTap: tabsRouter.setActiveIndex,
+          currentIndex: tabsRouter.activeIndex,
+          backgroundColor: Colors.white,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
             ),
-            bottomNavigationBar: BottomNavigationBar(
-              onTap: tabsRouter.setActiveIndex,
-              currentIndex: tabsRouter.activeIndex,
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: 'Profile',
-                ),
-              ],
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profile',
             ),
-          );
-        },
-      ),
+          ],
+        );
+      },
     );
   }
 }
