@@ -3,8 +3,6 @@ import 'package:auto_route_demo/pages/book_details_page.dart';
 import 'package:auto_route_demo/pages/book_list_page.dart';
 import 'package:auto_route_demo/pages/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/container.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -19,10 +17,10 @@ import 'package:flutter/src/widgets/container.dart';
       maintainState: true,
     ),
     AutoRoute(page: BookDetailsPage, path: '/book-details'),
-    AutoRoute(path: '/home/*', page: DemoPage),
+    // AutoRoute(path: '/home/*', page: DemoPage),
 
     // if the path does not match to home, it will redirect
-    RedirectRoute(path: '*', redirectTo: '/details')
+    RedirectRoute(path: '/home/*', redirectTo: '/')
   ],
 )
 class $AppRouter {}
