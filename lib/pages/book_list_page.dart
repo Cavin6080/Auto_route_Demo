@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route_demo/class/person_class.dart';
 import 'package:auto_route_demo/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -7,15 +8,12 @@ import 'package:flutter/src/widgets/framework.dart';
 class BookListPage extends StatefulWidget {
   const BookListPage({
     super.key,
-    @PathParam('name') required this.name,
-    @QueryParam() this.isGreen,
+    @PathParam('id') required this.id,
     @QueryParam() this.showName,
     this.person,
-    // @QueryParam('person') this.person,
   });
-  final String name;
-  final List<Person>? person;
-  final bool? isGreen;
+  final String id;
+  final Person? person;
   final bool? showName;
 
   @override
@@ -27,7 +25,7 @@ class _BookListPageState extends State<BookListPage> {
   @override
   void initState() {
     if (widget.person != null) {
-      _person = widget.person?[0];
+      _person = widget.person;
     }
     super.initState();
   }
@@ -35,41 +33,33 @@ class _BookListPageState extends State<BookListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          Text(
-            widget.name,
-            style: TextStyle(
-              color: widget.isGreen ?? false ? Colors.green : Colors.black,
-            ),
-          ),
-          Center(
-            child: Text(
+      appBar: AppBar(
+        title: const Text("Book list page"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Passed id: ${widget.id}"),
+            Text(
               widget.person != null
-                  ? "Person not null ${_person?.name}"
-                  : "Person is null",
+                  ? "Class value passed: ${_person?.name}"
+                  : "Class value is null",
             ),
-          ),
-          Center(
-            child: Text(
-              widget.showName ?? false ? "Cavin" : "No name",
+            Text(
+              widget.showName ?? false
+                  ? "Show name parameter true"
+                  : "Show name parameter false",
             ),
-          ),
-          Center(
-            child: ElevatedButton(
+            ElevatedButton(
               onPressed: () {
                 context.pushRoute(const BookDetailsRoute());
               },
-              child: const Text("Go to the next page"),
+              child: const Text("Go to the book details screen"),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
-}
-
-class Person {
-  Person({this.name});
-  String? name;
 }

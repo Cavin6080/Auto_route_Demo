@@ -14,6 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 
+import '../class/person_class.dart' as _i7;
 import '../pages/book_details_page.dart' as _i3;
 import '../pages/book_list_page.dart' as _i2;
 import '../pages/home_page.dart' as _i1;
@@ -36,16 +37,14 @@ class AppRouter extends _i5.RootStackRouter {
       final queryParams = routeData.queryParams;
       final args = routeData.argsAs<BookListRouteArgs>(
           orElse: () => BookListRouteArgs(
-                name: pathParams.getString('name'),
-                isGreen: queryParams.optBool('isGreen'),
+                id: pathParams.getString('id'),
                 showName: queryParams.optBool('showName'),
               ));
       return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i2.BookListPage(
           key: args.key,
-          name: args.name,
-          isGreen: args.isGreen,
+          id: args.id,
           showName: args.showName,
           person: args.person,
         ),
@@ -68,22 +67,16 @@ class AppRouter extends _i5.RootStackRouter {
   @override
   List<_i5.RouteConfig> get routes => [
         _i5.RouteConfig(
-          '/#redirect',
-          path: '/',
-          redirectTo: '/home',
-          fullMatch: true,
-        ),
-        _i5.RouteConfig(
           HomeRoute.name,
-          path: '/home',
+          path: '/',
         ),
         _i5.RouteConfig(
           BookListRoute.name,
-          path: '/home/:name',
+          path: '/:id',
         ),
         _i5.RouteConfig(
           BookDetailsRoute.name,
-          path: '/details',
+          path: '/book-details',
         ),
         _i5.RouteConfig(
           DemoRoute.name,
@@ -104,7 +97,7 @@ class HomeRoute extends _i5.PageRouteInfo<void> {
   const HomeRoute()
       : super(
           HomeRoute.name,
-          path: '/home',
+          path: '/',
         );
 
   static const String name = 'HomeRoute';
@@ -115,25 +108,20 @@ class HomeRoute extends _i5.PageRouteInfo<void> {
 class BookListRoute extends _i5.PageRouteInfo<BookListRouteArgs> {
   BookListRoute({
     _i6.Key? key,
-    required String name,
-    bool? isGreen,
+    required String id,
     bool? showName,
-    List<_i2.Person>? person,
+    _i7.Person? person,
   }) : super(
           BookListRoute.name,
-          path: '/home/:name',
+          path: '/:id',
           args: BookListRouteArgs(
             key: key,
-            name: name,
-            isGreen: isGreen,
+            id: id,
             showName: showName,
             person: person,
           ),
-          rawPathParams: {'name': name},
-          rawQueryParams: {
-            'isGreen': isGreen,
-            'showName': showName,
-          },
+          rawPathParams: {'id': id},
+          rawQueryParams: {'showName': showName},
         );
 
   static const String name = 'BookListRoute';
@@ -142,25 +130,22 @@ class BookListRoute extends _i5.PageRouteInfo<BookListRouteArgs> {
 class BookListRouteArgs {
   const BookListRouteArgs({
     this.key,
-    required this.name,
-    this.isGreen,
+    required this.id,
     this.showName,
     this.person,
   });
 
   final _i6.Key? key;
 
-  final String name;
-
-  final bool? isGreen;
+  final String id;
 
   final bool? showName;
 
-  final List<_i2.Person>? person;
+  final _i7.Person? person;
 
   @override
   String toString() {
-    return 'BookListRouteArgs{key: $key, name: $name, isGreen: $isGreen, showName: $showName, person: $person}';
+    return 'BookListRouteArgs{key: $key, id: $id, showName: $showName, person: $person}';
   }
 }
 
@@ -170,7 +155,7 @@ class BookDetailsRoute extends _i5.PageRouteInfo<void> {
   const BookDetailsRoute()
       : super(
           BookDetailsRoute.name,
-          path: '/details',
+          path: '/book-details',
         );
 
   static const String name = 'BookDetailsRoute';

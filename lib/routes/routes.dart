@@ -12,14 +12,13 @@ import 'package:flutter/src/widgets/container.dart';
     AutoRoute(
       page: HomePage,
       initial: true,
-      path: '/home',
     ),
     AutoRoute(
       page: BookListPage,
-      path: '/home/:name',
+      path: '/:id',
       maintainState: true,
     ),
-    AutoRoute(page: BookDetailsPage, path: '/details'),
+    AutoRoute(page: BookDetailsPage, path: '/book-details'),
     AutoRoute(path: '/home/*', page: DemoPage),
 
     // if the path does not match to home, it will redirect

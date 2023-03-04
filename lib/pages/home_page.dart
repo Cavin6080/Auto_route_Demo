@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route_demo/class/person_class.dart';
 import 'package:auto_route_demo/pages/book_list_page.dart';
 import 'package:auto_route_demo/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
@@ -12,71 +13,37 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Home"),
       ),
-      body: ListView(
-        children: [
-          Center(
-            child: ElevatedButton(
-              onPressed: () => context.navigateTo(
-                BookListRoute(
-                  name: 'cavin',
-                  // isGreen: true,
-                  // showName: false,
-                ),
-              ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () => context.pushRoute(BookListRoute(id: '1')),
               child: const Text(
-                "Navigate",
+                "Navigate to Book list",
               ),
             ),
-          ),
-          Center(
-            child: ElevatedButton(
+            ElevatedButton(
               onPressed: () => context.pushRoute(
                 BookListRoute(
-                  name: 'cavin',
-                  // isGreen: true,
-                  // showName: false,
+                  id: '2',
+                  person: Person(name: "Cavin"),
                 ),
               ),
-              child: const Text(
-                "Go to the Book Listing Screen",
-              ),
+              child: const Text("Pass class value to book list"),
             ),
-          ),
-          Center(
-            child: ElevatedButton(
+            ElevatedButton(
               onPressed: () => context.pushRoute(
                 BookListRoute(
-                  name: 'cavin',
-                  person: [
-                    Person(
-                      name: "hola person",
-                    ),
-                  ],
+                  id: '2',
+                  showName: true,
                 ),
               ),
-              child: const Text(
-                "Pass class value",
-              ),
+              child: const Text("Pass query params to book list"),
             ),
-          ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () => context.pushRoute(
-                BookListRoute(
-                  name: 'cavin',
-                  person: [
-                    Person(
-                      name: "hola person",
-                    ),
-                  ],
-                ),
-              ),
-              child: const Text(
-                "Pass class value in push mode",
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -11,9 +11,10 @@ class BookDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const AutoLeadingButton(),
+        title: const Text("Book details page"),
       ),
       body: const Center(
-        child: Text("data"),
+        child: Text("Coming soon"),
       ),
     );
   }
