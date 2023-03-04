@@ -11,7 +11,7 @@ import 'package:auto_route_demo/pages/tabs/profile_tab.dart';
   replaceInRouteName: 'Page,Route',
   routes: <AutoRoute>[
     AutoRoute(
-      page: GroupPage,
+      page: MainTabPage,
       initial: true,
       path: '/',
       children: [

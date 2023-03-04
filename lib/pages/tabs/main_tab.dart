@@ -5,8 +5,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_route_demo/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 
-class GroupPage extends StatelessWidget {
-  const GroupPage({Key? key}) : super(key: key);
+class MainTabPage extends StatelessWidget {
+  const MainTabPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,6 @@ class GroupPage extends StatelessWidget {
         return BottomNavigationBar(
           onTap: tabsRouter.setActiveIndex,
           currentIndex: tabsRouter.activeIndex,
-          backgroundColor: Colors.white,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),

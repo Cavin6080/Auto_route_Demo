@@ -27,10 +27,10 @@ class AppRouter extends _i7.RootStackRouter {
 
   @override
   final Map<String, _i7.PageFactory> pagesMap = {
-    GroupRoute.name: (routeData) {
+    MainTabRoute.name: (routeData) {
       return _i7.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i1.GroupPage(),
+        child: const _i1.MainTabPage(),
       );
     },
     HomeRouter.name: (routeData) {
@@ -74,13 +74,13 @@ class AppRouter extends _i7.RootStackRouter {
   @override
   List<_i7.RouteConfig> get routes => [
         _i7.RouteConfig(
-          GroupRoute.name,
+          MainTabRoute.name,
           path: '/',
           children: [
             _i7.RouteConfig(
               HomeRouter.name,
               path: 'home',
-              parent: GroupRoute.name,
+              parent: MainTabRoute.name,
               children: [
                 _i7.RouteConfig(
                   HomeTab.name,
@@ -104,7 +104,7 @@ class AppRouter extends _i7.RootStackRouter {
             _i7.RouteConfig(
               ProfileRouter.name,
               path: 'profile',
-              parent: GroupRoute.name,
+              parent: MainTabRoute.name,
               children: [
                 _i7.RouteConfig(
                   ProfileTab.name,
@@ -131,16 +131,16 @@ class AppRouter extends _i7.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.GroupPage]
-class GroupRoute extends _i7.PageRouteInfo<void> {
-  const GroupRoute({List<_i7.PageRouteInfo>? children})
+/// [_i1.MainTabPage]
+class MainTabRoute extends _i7.PageRouteInfo<void> {
+  const MainTabRoute({List<_i7.PageRouteInfo>? children})
       : super(
-          GroupRoute.name,
+          MainTabRoute.name,
           path: '/',
           initialChildren: children,
         );
 
-  static const String name = 'GroupRoute';
+  static const String name = 'MainTabRoute';
 }
 
 /// generated route for
