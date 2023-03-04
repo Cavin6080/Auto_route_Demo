@@ -11,119 +11,68 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i7;
-import 'package:auto_route/empty_router_widgets.dart' as _i2;
-import 'package:flutter/material.dart' as _i8;
+import 'package:auto_route/auto_route.dart' as _i4;
+import 'package:flutter/material.dart' as _i5;
 
-import '../pages/screens/home_details_screen.dart' as _i4;
-import '../pages/screens/profile_details_screen.dart' as _i6;
-import '../pages/tabs/home_tab.dart' as _i3;
-import '../pages/tabs/main_tab.dart' as _i1;
-import '../pages/tabs/profile_tab.dart' as _i5;
+import '../pages/otp_page.dart' as _i3;
+import '../pages/sign_in_page.dart' as _i2;
+import '../wrappers/sign_in_wrapper.dart' as _i1;
 
-class AppRouter extends _i7.RootStackRouter {
-  AppRouter([_i8.GlobalKey<_i8.NavigatorState>? navigatorKey])
+class AppRouter extends _i4.RootStackRouter {
+  AppRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i7.PageFactory> pagesMap = {
-    GroupRoute.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
+  final Map<String, _i4.PageFactory> pagesMap = {
+    Login.name: (routeData) {
+      final args = routeData.argsAs<LoginArgs>(orElse: () => const LoginArgs());
+      return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i1.GroupPage(),
+        child: _i1.SignInWrapperPage(
+          key: args.key,
+          onLogin: args.onLogin,
+        ),
       );
     },
-    HomeRouter.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
+    SignInRoute.name: (routeData) {
+      final args = routeData.argsAs<SignInRouteArgs>(
+          orElse: () => const SignInRouteArgs());
+      return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i2.EmptyRouterPage(),
+        child: _i2.SignInPage(
+          key: args.key,
+          onNext: args.onNext,
+        ),
       );
     },
-    ProfileRouter.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
+    OtpRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<OtpRouteArgs>(orElse: () => const OtpRouteArgs());
+      return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: const _i2.EmptyRouterPage(),
-      );
-    },
-    HomeTab.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i3.HomeTab(),
-      );
-    },
-    HomeDetailsRoute.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i4.HomeDetailsPage(),
-      );
-    },
-    ProfileTab.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i5.ProfileTab(),
-      );
-    },
-    ProfileDetailsRoute.name: (routeData) {
-      return _i7.MaterialPageX<dynamic>(
-        routeData: routeData,
-        child: const _i6.ProfileDetailsPage(),
+        child: _i3.OtpPage(
+          key: args.key,
+          onNext: args.onNext,
+        ),
       );
     },
   };
 
   @override
-  List<_i7.RouteConfig> get routes => [
-        _i7.RouteConfig(
-          GroupRoute.name,
+  List<_i4.RouteConfig> get routes => [
+        _i4.RouteConfig(
+          Login.name,
           path: '/',
           children: [
-            _i7.RouteConfig(
-              HomeRouter.name,
-              path: 'home',
-              parent: GroupRoute.name,
-              children: [
-                _i7.RouteConfig(
-                  HomeTab.name,
-                  path: '',
-                  parent: HomeRouter.name,
-                ),
-                _i7.RouteConfig(
-                  HomeDetailsRoute.name,
-                  path: 'home-details',
-                  parent: HomeRouter.name,
-                ),
-                _i7.RouteConfig(
-                  '*#redirect',
-                  path: '*',
-                  parent: HomeRouter.name,
-                  redirectTo: '',
-                  fullMatch: true,
-                ),
-              ],
+            _i4.RouteConfig(
+              SignInRoute.name,
+              path: '',
+              parent: Login.name,
             ),
-            _i7.RouteConfig(
-              ProfileRouter.name,
-              path: 'profile',
-              parent: GroupRoute.name,
-              children: [
-                _i7.RouteConfig(
-                  ProfileTab.name,
-                  path: '',
-                  parent: ProfileRouter.name,
-                ),
-                _i7.RouteConfig(
-                  ProfileDetailsRoute.name,
-                  path: 'profile-details',
-                  parent: ProfileRouter.name,
-                ),
-                _i7.RouteConfig(
-                  '*#redirect',
-                  path: '*',
-                  parent: ProfileRouter.name,
-                  redirectTo: '',
-                  fullMatch: true,
-                ),
-              ],
+            _i4.RouteConfig(
+              OtpRoute.name,
+              path: 'otp',
+              parent: Login.name,
             ),
           ],
         )
@@ -131,88 +80,105 @@ class AppRouter extends _i7.RootStackRouter {
 }
 
 /// generated route for
-/// [_i1.GroupPage]
-class GroupRoute extends _i7.PageRouteInfo<void> {
-  const GroupRoute({List<_i7.PageRouteInfo>? children})
-      : super(
-          GroupRoute.name,
+/// [_i1.SignInWrapperPage]
+class Login extends _i4.PageRouteInfo<LoginArgs> {
+  Login({
+    _i5.Key? key,
+    dynamic Function(bool)? onLogin,
+    List<_i4.PageRouteInfo>? children,
+  }) : super(
+          Login.name,
           path: '/',
+          args: LoginArgs(
+            key: key,
+            onLogin: onLogin,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'GroupRoute';
+  static const String name = 'Login';
+}
+
+class LoginArgs {
+  const LoginArgs({
+    this.key,
+    this.onLogin,
+  });
+
+  final _i5.Key? key;
+
+  final dynamic Function(bool)? onLogin;
+
+  @override
+  String toString() {
+    return 'LoginArgs{key: $key, onLogin: $onLogin}';
+  }
 }
 
 /// generated route for
-/// [_i2.EmptyRouterPage]
-class HomeRouter extends _i7.PageRouteInfo<void> {
-  const HomeRouter({List<_i7.PageRouteInfo>? children})
-      : super(
-          HomeRouter.name,
-          path: 'home',
-          initialChildren: children,
-        );
-
-  static const String name = 'HomeRouter';
-}
-
-/// generated route for
-/// [_i2.EmptyRouterPage]
-class ProfileRouter extends _i7.PageRouteInfo<void> {
-  const ProfileRouter({List<_i7.PageRouteInfo>? children})
-      : super(
-          ProfileRouter.name,
-          path: 'profile',
-          initialChildren: children,
-        );
-
-  static const String name = 'ProfileRouter';
-}
-
-/// generated route for
-/// [_i3.HomeTab]
-class HomeTab extends _i7.PageRouteInfo<void> {
-  const HomeTab()
-      : super(
-          HomeTab.name,
+/// [_i2.SignInPage]
+class SignInRoute extends _i4.PageRouteInfo<SignInRouteArgs> {
+  SignInRoute({
+    _i5.Key? key,
+    Function? onNext,
+  }) : super(
+          SignInRoute.name,
           path: '',
+          args: SignInRouteArgs(
+            key: key,
+            onNext: onNext,
+          ),
         );
 
-  static const String name = 'HomeTab';
+  static const String name = 'SignInRoute';
+}
+
+class SignInRouteArgs {
+  const SignInRouteArgs({
+    this.key,
+    this.onNext,
+  });
+
+  final _i5.Key? key;
+
+  final Function? onNext;
+
+  @override
+  String toString() {
+    return 'SignInRouteArgs{key: $key, onNext: $onNext}';
+  }
 }
 
 /// generated route for
-/// [_i4.HomeDetailsPage]
-class HomeDetailsRoute extends _i7.PageRouteInfo<void> {
-  const HomeDetailsRoute()
-      : super(
-          HomeDetailsRoute.name,
-          path: 'home-details',
+/// [_i3.OtpPage]
+class OtpRoute extends _i4.PageRouteInfo<OtpRouteArgs> {
+  OtpRoute({
+    _i5.Key? key,
+    Function? onNext,
+  }) : super(
+          OtpRoute.name,
+          path: 'otp',
+          args: OtpRouteArgs(
+            key: key,
+            onNext: onNext,
+          ),
         );
 
-  static const String name = 'HomeDetailsRoute';
+  static const String name = 'OtpRoute';
 }
 
-/// generated route for
-/// [_i5.ProfileTab]
-class ProfileTab extends _i7.PageRouteInfo<void> {
-  const ProfileTab()
-      : super(
-          ProfileTab.name,
-          path: '',
-        );
+class OtpRouteArgs {
+  const OtpRouteArgs({
+    this.key,
+    this.onNext,
+  });
 
-  static const String name = 'ProfileTab';
-}
+  final _i5.Key? key;
 
-/// generated route for
-/// [_i6.ProfileDetailsPage]
-class ProfileDetailsRoute extends _i7.PageRouteInfo<void> {
-  const ProfileDetailsRoute()
-      : super(
-          ProfileDetailsRoute.name,
-          path: 'profile-details',
-        );
+  final Function? onNext;
 
-  static const String name = 'ProfileDetailsRoute';
+  @override
+  String toString() {
+    return 'OtpRouteArgs{key: $key, onNext: $onNext}';
+  }
 }
