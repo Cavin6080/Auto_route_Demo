@@ -13,27 +13,8 @@ import 'package:flutter/material.dart';
     ),
     AutoRoute(
       page: BookListPage,
-      path: '/:id',
-      maintainState: true,
     ),
-    AutoRoute(page: BookDetailsPage, path: '/book-details'),
-    // AutoRoute(path: '/home/*', page: DemoPage),
-
-    // if the path does not match to home, it will redirect
-    RedirectRoute(path: '/home/*', redirectTo: '/')
+    AutoRoute(page: BookDetailsPage),
   ],
 )
 class $AppRouter {}
-
-class DemoPage extends StatelessWidget {
-  const DemoPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("redirect is working"),
-      ),
-    );
-  }
-}

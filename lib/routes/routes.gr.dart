@@ -14,7 +14,6 @@
 import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:flutter/material.dart' as _i5;
 
-import '../class/person_class.dart' as _i6;
 import '../pages/book_details_page.dart' as _i3;
 import '../pages/book_list_page.dart' as _i2;
 import '../pages/home_page.dart' as _i1;
@@ -32,21 +31,9 @@ class AppRouter extends _i4.RootStackRouter {
       );
     },
     BookListRoute.name: (routeData) {
-      final pathParams = routeData.inheritedPathParams;
-      final queryParams = routeData.queryParams;
-      final args = routeData.argsAs<BookListRouteArgs>(
-          orElse: () => BookListRouteArgs(
-                id: pathParams.getString('id'),
-                showName: queryParams.optBool('showName'),
-              ));
       return _i4.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i2.BookListPage(
-          key: args.key,
-          id: args.id,
-          showName: args.showName,
-          person: args.person,
-        ),
+        child: const _i2.BookListPage(),
       );
     },
     BookDetailsRoute.name: (routeData) {
@@ -65,17 +52,11 @@ class AppRouter extends _i4.RootStackRouter {
         ),
         _i4.RouteConfig(
           BookListRoute.name,
-          path: '/:id',
+          path: '/book-list-page',
         ),
         _i4.RouteConfig(
           BookDetailsRoute.name,
-          path: '/book-details',
-        ),
-        _i4.RouteConfig(
-          '/home/*#redirect',
-          path: '/home/*',
-          redirectTo: '/',
-          fullMatch: true,
+          path: '/book-details-page',
         ),
       ];
 }
@@ -94,48 +75,14 @@ class HomeRoute extends _i4.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.BookListPage]
-class BookListRoute extends _i4.PageRouteInfo<BookListRouteArgs> {
-  BookListRoute({
-    _i5.Key? key,
-    required String id,
-    bool? showName,
-    _i6.Person? person,
-  }) : super(
+class BookListRoute extends _i4.PageRouteInfo<void> {
+  const BookListRoute()
+      : super(
           BookListRoute.name,
-          path: '/:id',
-          args: BookListRouteArgs(
-            key: key,
-            id: id,
-            showName: showName,
-            person: person,
-          ),
-          rawPathParams: {'id': id},
-          rawQueryParams: {'showName': showName},
+          path: '/book-list-page',
         );
 
   static const String name = 'BookListRoute';
-}
-
-class BookListRouteArgs {
-  const BookListRouteArgs({
-    this.key,
-    required this.id,
-    this.showName,
-    this.person,
-  });
-
-  final _i5.Key? key;
-
-  final String id;
-
-  final bool? showName;
-
-  final _i6.Person? person;
-
-  @override
-  String toString() {
-    return 'BookListRouteArgs{key: $key, id: $id, showName: $showName, person: $person}';
-  }
 }
 
 /// generated route for
@@ -144,7 +91,7 @@ class BookDetailsRoute extends _i4.PageRouteInfo<void> {
   const BookDetailsRoute()
       : super(
           BookDetailsRoute.name,
-          path: '/book-details',
+          path: '/book-details-page',
         );
 
   static const String name = 'BookDetailsRoute';
