@@ -12,18 +12,14 @@ import 'package:flutter/material.dart';
       page: HomePage,
       initial: true,
     ),
-    AutoRoute(
-      page: BookListPage,
-      path: '/:id',
-    ),
     AutoRoute(page: BookDetailsPage, path: '/book-details'),
 
     // uncomment this code to use custom transition
-    // CustomRoute(
-    //   path: '/:id',
-    //   page: BookListPage,
-    //   transitionsBuilder: TransitionsBuilders.slideTop,
-    // ),
+    CustomRoute(
+      path: '/:id',
+      page: BookListPage,
+      transitionsBuilder: TransitionsBuilders.slideTop,
+    ),
 
     // redirect route using wildcards
     // AutoRoute(path: '/home/*', page: DemoPage),
