@@ -15,21 +15,16 @@ import 'package:auto_route_demo/pages/tab_page.dart';
       children: [
         // First bottomnavigation bar tab
         AutoRoute(
-          path: "home",
+          path: 'home',
           name: "HomeRouter",
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(path: '', page: HomePage),
-          ],
+          page: HomePage,
         ),
+
         // Second bottomnavigation bar tab
         AutoRoute(
           path: "profile",
           name: "ProfileRouter",
-          page: EmptyRouterPage,
-          children: [
-            AutoRoute(path: '', page: ProfilePage),
-          ],
+          page: ProfilePage,
         ),
       ],
     ),
