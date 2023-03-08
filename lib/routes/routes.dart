@@ -4,7 +4,6 @@ import 'package:auto_route/empty_router_widgets.dart';
 import 'package:auto_route_demo/pages/profile_page.dart';
 import 'package:auto_route_demo/pages/home_page.dart';
 import 'package:auto_route_demo/pages/tab_page.dart';
-import 'package:flutter/material.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
@@ -37,16 +36,3 @@ import 'package:flutter/material.dart';
   ],
 )
 class $AppRouter {}
-
-class DemoPage extends StatelessWidget {
-  const DemoPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("redirect is working"),
-      ),
-    );
-  }
-}
