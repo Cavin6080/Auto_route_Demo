@@ -35,16 +35,6 @@ import 'package:flutter/material.dart';
       ],
     ),
   ],
-  // routes: <AutoRoute>[
-  //   AutoRoute(
-  //     page: HomePage,
-  //     initial: true,
-  //   ),
-  //   AutoRoute(
-  //     page: ProfilePage,
-  //     path: '/profile',
-  //   ),
-  // ],
 )
 class $AppRouter {}
 
