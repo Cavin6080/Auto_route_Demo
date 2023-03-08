@@ -2,10 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_route_demo/class/person_class.dart';
 import 'package:auto_route_demo/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
-class BookListPage extends StatefulWidget {
+class BookListPage extends StatelessWidget {
   const BookListPage({
     super.key,
     @PathParam('id') required this.id,
@@ -17,20 +15,6 @@ class BookListPage extends StatefulWidget {
   final bool? showName;
 
   @override
-  State<BookListPage> createState() => _BookListPageState();
-}
-
-class _BookListPageState extends State<BookListPage> {
-  Person? _person;
-  @override
-  void initState() {
-    if (widget.person != null) {
-      _person = widget.person;
-    }
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -40,14 +24,14 @@ class _BookListPageState extends State<BookListPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Passed id: ${widget.id}"),
+            Text("Passed id: $id"),
             Text(
-              widget.person != null
-                  ? "Class value passed: ${_person?.name}"
+              person != null
+                  ? "Class value passed: ${person?.name}"
                   : "Class value is null",
             ),
             Text(
-              widget.showName ?? false
+              showName ?? false
                   ? "Show name parameter true"
                   : "Show name parameter false",
             ),
