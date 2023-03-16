@@ -23,8 +23,11 @@ class _SignInPageState extends State<SignInPage> {
           const SizedBox(
             height: 50,
           ),
-          TextField(
-            controller: textEditingController,
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.5,
+            child: TextField(
+              controller: textEditingController,
+            ),
           ),
           const SizedBox(
             height: 50,

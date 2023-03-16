@@ -1,10 +1,4 @@
-import 'dart:developer';
-
-import 'package:auto_route/auto_route.dart';
-import 'package:auto_route_demo/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class OtpPage extends StatelessWidget {
   final Function? onNext;
@@ -21,18 +15,7 @@ class OtpPage extends StatelessWidget {
             child: Text("Otp Screen"),
           ),
           ElevatedButton(
-            onPressed: () {
-              onNext!("abc");
-              // context.router.root.push(
-              //   Login(
-              //     // email: textEditingController.text,
-              //     onLogin: (e) {
-              //       log("login successfully");
-
-              //     },
-              //   ),
-              // );
-            },
+            onPressed: () => onNext!("abc"),
             child: const Text("On otp tap"),
           ),
         ],
