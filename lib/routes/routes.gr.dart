@@ -11,22 +11,24 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i4;
-import 'package:flutter/material.dart' as _i5;
+import 'package:auto_route/auto_route.dart' as _i5;
+import 'package:flutter/material.dart' as _i6;
 
-import '../pages/otp_page.dart' as _i3;
-import '../pages/sign_in_page.dart' as _i2;
+import '../pages/home_page.dart' as _i2;
+import '../pages/otp_page.dart' as _i4;
+import '../pages/sign_in_page.dart' as _i3;
 import '../wrappers/sign_in_wrapper.dart' as _i1;
 
-class AppRouter extends _i4.RootStackRouter {
-  AppRouter([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])
+class AppRouter extends _i5.RootStackRouter {
+  AppRouter([_i6.GlobalKey<_i6.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i4.PageFactory> pagesMap = {
-    Login.name: (routeData) {
-      final args = routeData.argsAs<LoginArgs>(orElse: () => const LoginArgs());
-      return _i4.MaterialPageX<dynamic>(
+  final Map<String, _i5.PageFactory> pagesMap = {
+    LoginPage.name: (routeData) {
+      final args =
+          routeData.argsAs<LoginPageArgs>(orElse: () => const LoginPageArgs());
+      return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
         child: _i1.SignInWrapperPage(
           key: args.key,
@@ -34,12 +36,18 @@ class AppRouter extends _i4.RootStackRouter {
         ),
       );
     },
+    HomePage.name: (routeData) {
+      return _i5.MaterialPageX<dynamic>(
+        routeData: routeData,
+        child: const _i2.HomePage(),
+      );
+    },
     SignInRoute.name: (routeData) {
       final args = routeData.argsAs<SignInRouteArgs>(
           orElse: () => const SignInRouteArgs());
-      return _i4.MaterialPageX<dynamic>(
+      return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i2.SignInPage(
+        child: _i3.SignInPage(
           key: args.key,
           onNext: args.onNext,
         ),
@@ -48,9 +56,9 @@ class AppRouter extends _i4.RootStackRouter {
     OtpRoute.name: (routeData) {
       final args =
           routeData.argsAs<OtpRouteArgs>(orElse: () => const OtpRouteArgs());
-      return _i4.MaterialPageX<dynamic>(
+      return _i5.MaterialPageX<dynamic>(
         routeData: routeData,
-        child: _i3.OtpPage(
+        child: _i4.OtpPage(
           key: args.key,
           onNext: args.onNext,
         ),
@@ -59,67 +67,83 @@ class AppRouter extends _i4.RootStackRouter {
   };
 
   @override
-  List<_i4.RouteConfig> get routes => [
-        _i4.RouteConfig(
-          Login.name,
+  List<_i5.RouteConfig> get routes => [
+        _i5.RouteConfig(
+          LoginPage.name,
           path: '/',
           children: [
-            _i4.RouteConfig(
+            _i5.RouteConfig(
               SignInRoute.name,
               path: '',
-              parent: Login.name,
+              parent: LoginPage.name,
             ),
-            _i4.RouteConfig(
+            _i5.RouteConfig(
               OtpRoute.name,
               path: 'otp',
-              parent: Login.name,
+              parent: LoginPage.name,
             ),
           ],
-        )
+        ),
+        _i5.RouteConfig(
+          HomePage.name,
+          path: '/home',
+        ),
       ];
 }
 
 /// generated route for
 /// [_i1.SignInWrapperPage]
-class Login extends _i4.PageRouteInfo<LoginArgs> {
-  Login({
-    _i5.Key? key,
+class LoginPage extends _i5.PageRouteInfo<LoginPageArgs> {
+  LoginPage({
+    _i6.Key? key,
     dynamic Function(bool)? onLogin,
-    List<_i4.PageRouteInfo>? children,
+    List<_i5.PageRouteInfo>? children,
   }) : super(
-          Login.name,
+          LoginPage.name,
           path: '/',
-          args: LoginArgs(
+          args: LoginPageArgs(
             key: key,
             onLogin: onLogin,
           ),
           initialChildren: children,
         );
 
-  static const String name = 'Login';
+  static const String name = 'LoginPage';
 }
 
-class LoginArgs {
-  const LoginArgs({
+class LoginPageArgs {
+  const LoginPageArgs({
     this.key,
     this.onLogin,
   });
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
   final dynamic Function(bool)? onLogin;
 
   @override
   String toString() {
-    return 'LoginArgs{key: $key, onLogin: $onLogin}';
+    return 'LoginPageArgs{key: $key, onLogin: $onLogin}';
   }
 }
 
 /// generated route for
-/// [_i2.SignInPage]
-class SignInRoute extends _i4.PageRouteInfo<SignInRouteArgs> {
+/// [_i2.HomePage]
+class HomePage extends _i5.PageRouteInfo<void> {
+  const HomePage()
+      : super(
+          HomePage.name,
+          path: '/home',
+        );
+
+  static const String name = 'HomePage';
+}
+
+/// generated route for
+/// [_i3.SignInPage]
+class SignInRoute extends _i5.PageRouteInfo<SignInRouteArgs> {
   SignInRoute({
-    _i5.Key? key,
+    _i6.Key? key,
     Function? onNext,
   }) : super(
           SignInRoute.name,
@@ -139,7 +163,7 @@ class SignInRouteArgs {
     this.onNext,
   });
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
   final Function? onNext;
 
@@ -150,10 +174,10 @@ class SignInRouteArgs {
 }
 
 /// generated route for
-/// [_i3.OtpPage]
-class OtpRoute extends _i4.PageRouteInfo<OtpRouteArgs> {
+/// [_i4.OtpPage]
+class OtpRoute extends _i5.PageRouteInfo<OtpRouteArgs> {
   OtpRoute({
-    _i5.Key? key,
+    _i6.Key? key,
     Function? onNext,
   }) : super(
           OtpRoute.name,
@@ -173,7 +197,7 @@ class OtpRouteArgs {
     this.onNext,
   });
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
   final Function? onNext;
 

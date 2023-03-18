@@ -23,15 +23,18 @@ class MyApp extends StatelessWidget {
       routerDelegate: AutoRouterDelegate.declarative(
         _router,
         routes: (_) => [
-          Login(
-            onLogin: (e) {
-              if (e) {
+          // you can check if the user is logged or not
+          // and based on that you can push routes automatically
+          if (1 == 2)
+            const HomePage()
+          else
+            LoginPage(
+              onLogin: (e) {
+                // save info in localstorage or
+                // perform certain operations
                 log("logged in ");
-              } else {
-                log("not logged in ");
-              }
-            },
-          ),
+              },
+            ),
         ],
       ),
       routeInformationParser: _router.defaultRouteParser(),
