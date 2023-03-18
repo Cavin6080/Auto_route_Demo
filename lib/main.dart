@@ -13,7 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       title: 'Auto route Demo',
-      theme: ThemeData.dark().copyWith(
+      theme: ThemeData.light().copyWith(
+        useMaterial3: true,
         pageTransitionsTheme: const PageTransitionsTheme(
           builders: {
             TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
