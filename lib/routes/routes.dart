@@ -1,33 +1,31 @@
 import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/empty_router_widgets.dart';
 import 'package:auto_route_demo/pages/profile_page.dart';
 import 'package:auto_route_demo/pages/home_page.dart';
 import 'package:auto_route_demo/pages/tab_page.dart';
+import 'package:auto_route_demo/routes/routes.gr.dart';
 
-@MaterialAutoRouter(
+@AutoRouterConfig(
   replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute>[
+)
+class AppRouter extends $AppRouter {
+  @override
+  RouteType get defaultRouteType => RouteType.material();
+  @override
+  final List<AutoRoute> routes = [
     AutoRoute(
       path: "/",
-      initial: true,
-      page: TabPage,
+      page: TabRoute.page,
       children: [
-        // First bottomnavigation bar tab
         AutoRoute(
           path: 'home',
-          name: "HomeRouter",
-          page: HomePage,
+          page: HomeRouter.page,
         ),
-
-        // Second bottomnavigation bar tab
         AutoRoute(
           path: "profile",
-          name: "ProfileRouter",
-          page: ProfilePage,
+          page: ProfileRouter.page,
         ),
       ],
     ),
-  ],
-)
-class $AppRouter {}
+  ];
+}
