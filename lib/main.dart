@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:auto_route_demo/pages/home_page.dart';
+import 'package:auto_route_demo/routes/routes.dart';
 import 'package:auto_route_demo/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
           // you can check if the user is logged or not
           // and based on that you can push routes automatically
           if (1 == 2)
-            const HomePage()
+             const HomeRoute()
           else
             LoginPage(
               onLogin: (e) {

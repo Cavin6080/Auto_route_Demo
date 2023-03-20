@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_route_demo/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage(name: 'LoginPage')
 class SignInWrapperPage extends StatefulWidget {
   final Function(bool isLoggedIn)? onLogin;
 

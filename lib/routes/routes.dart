@@ -1,34 +1,22 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/empty_router_widgets.dart';
-import 'package:auto_route_demo/pages/home_page.dart';
-import 'package:auto_route_demo/pages/otp_page.dart';
-import 'package:auto_route_demo/pages/sign_in_page.dart';
-import 'package:auto_route_demo/wrappers/sign_in_wrapper.dart';
+import 'package:auto_route_demo/routes/routes.gr.dart';
 
-@MaterialAutoRouter(
+@AutoRouterConfig(
   replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute>[
+)
+class AppRouter extends $AppRouter {
+  @override
+  RouteType get defaultRouteType => const RouteType.material();
+  @override
+  final List<AutoRoute> routes = [
     AutoRoute(
-      initial: true,
-      page: SignInWrapperPage,
-      name: 'LoginPage',
+      path: '/',
+      page: LoginPage.page,
       children: [
-        AutoRoute(
-          path: '',
-          page: SignInPage,
-        ),
-        AutoRoute(
-          path: 'otp',
-          page: OtpPage,
-        ),
+        AutoRoute(path: '', page: SignInRoute.page),
+        AutoRoute(path: 'otp', page: OtpRoute.page),
       ],
     ),
-    AutoRoute(
-      name: 'HomePage',
-      path: '/home',
-      page: HomePage,
-    ),
-  ],
-)
-class $AppRouter {}
+    AutoRoute(path: '/home', page: HomeRoute.page),
+  ];
+}

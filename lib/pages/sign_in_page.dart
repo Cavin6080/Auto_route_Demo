@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key, this.onNext});
 
