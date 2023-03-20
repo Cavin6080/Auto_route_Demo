@@ -1,44 +1,26 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route_demo/pages/book_details_page.dart';
-import 'package:auto_route_demo/pages/book_list_page.dart';
-import 'package:auto_route_demo/pages/home_page.dart';
-import 'package:flutter/material.dart';
+import 'package:auto_route_demo/routes/routes.gr.dart';
 
-@MaterialAutoRouter(
+@AutoRouterConfig(
   replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute>[
+)
+class AppRouter extends $AppRouter {
+  @override
+  RouteType get defaultRouteType => const RouteType.material();
+  @override
+  final List<AutoRoute> routes = [
     AutoRoute(
-      page: HomePage,
-      initial: true,
+      page: HomeRoute.page,
+      path: '/',
     ),
-    AutoRoute(page: BookDetailsPage, path: '/book-details'),
-
-    // uncomment this code to use custom transition
+    AutoRoute(
+      page: BookDetailsRoute.page,
+      path: '/book-details',
+    ),
     CustomRoute(
       path: '/:id',
-      page: BookListPage,
+      page: BookListRoute.page,
       transitionsBuilder: TransitionsBuilders.slideTop,
     ),
-
-    // redirect route using wildcards
-    // AutoRoute(path: '/home/*', page: DemoPage),
-
-    // redirect route using RedirectRoute class
-    RedirectRoute(path: '/home/*', redirectTo: '/')
-  ],
-)
-class $AppRouter {}
-
-class DemoPage extends StatelessWidget {
-  const DemoPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("redirect is working"),
-      ),
-    );
-  }
+  ];
 }

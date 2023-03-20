@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
+@RoutePage()
 class BookDetailsPage extends StatelessWidget {
   const BookDetailsPage({super.key});
 
