@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:auto_route_demo/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class MainTabPage extends StatelessWidget {
   const MainTabPage({Key? key}) : super(key: key);
 
@@ -19,10 +20,10 @@ class MainTabPage extends StatelessWidget {
         );
       },
       routes: const [
-        HomeRouter(),
-        ProfileRouter(),
+        HomeTabRoute(),
+        ProfileTabRoute(),
       ],
-      builder: (context, child, animation) {
+      transitionBuilder: (context, child, animation) {
         return ScaleTransition(
           scale: animation,
           child: child,

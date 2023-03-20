@@ -1,42 +1,48 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:auto_route/empty_router_widgets.dart';
-import 'package:auto_route_demo/pages/screens/home_details_screen.dart';
-import 'package:auto_route_demo/pages/screens/profile_details_screen.dart';
-import 'package:auto_route_demo/pages/tabs/home_tab.dart';
-import 'package:auto_route_demo/pages/tabs/main_tab.dart';
-import 'package:auto_route_demo/pages/tabs/profile_tab.dart';
+import 'package:auto_route_demo/routes/routes.gr.dart';
 
-@MaterialAutoRouter(
+@AutoRouterConfig(
   replaceInRouteName: 'Page,Route',
-  routes: <AutoRoute>[
+)
+class AppRouter extends $AppRouter {
+  @override
+  RouteType get defaultRouteType => const RouteType.material();
+  @override
+  final List<AutoRoute> routes = [
+    // RedirectRoute(path: '/', redirectTo: 'home'),
     AutoRoute(
-      page: MainTabPage,
-      initial: true,
+      page: MainTabRoute.page,
       path: '/',
       children: [
         AutoRoute(
-          page: EmptyRouterPage,
+          page: HomeTabRoute.page,
           path: 'home',
-          name: 'HomeRouter',
           children: [
-            AutoRoute(path: '', page: HomeTab),
-            AutoRoute(path: 'home-details', page: HomeDetailsPage),
+            AutoRoute(path: '', page: HomeRouter.page),
+            AutoRoute(path: 'home-details', page: HomeDetailsRoute.page),
             RedirectRoute(path: '*', redirectTo: ''),
           ],
         ),
         AutoRoute(
-          page: EmptyRouterPage,
+          page: ProfileTabRoute.page,
           path: 'profile',
-          name: 'ProfileRouter',
           children: [
-            AutoRoute(path: '', page: ProfileTab),
-            AutoRoute(path: 'profile-details', page: ProfileDetailsPage),
+            AutoRoute(path: '', page: ProfileRoute.page),
+            AutoRoute(path: '', page: ProfileDetailsRoute.page),
             RedirectRoute(path: '*', redirectTo: ''),
           ],
         ),
       ],
     ),
-  ],
-)
-class $AppRouter {}
+  ];
+}
+
+@RoutePage()
+class HomeTabPage extends AutoRouter {
+  const HomeTabPage({super.key});
+}
+
+@RoutePage()
+class ProfileTabPage extends AutoRouter {
+  const ProfileTabPage({super.key});
+}
