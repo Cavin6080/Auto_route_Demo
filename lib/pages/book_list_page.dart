@@ -3,6 +3,7 @@ import 'package:auto_route_demo/class/person_class.dart';
 import 'package:auto_route_demo/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class BookListPage extends StatelessWidget {
   const BookListPage({
     super.key,
