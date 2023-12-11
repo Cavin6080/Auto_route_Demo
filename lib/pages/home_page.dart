@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:auto_route_demo/class/person_class.dart';
-import 'package:auto_route_demo/pages/book_list_page.dart';
 import 'package:auto_route_demo/routes/routes.gr.dart';
 import 'package:flutter/material.dart';
 
