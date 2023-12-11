@@ -9,43 +9,41 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i7;
-import 'package:auto_route_demo/pages/screens/home_details_screen.dart' as _i4;
+import 'package:auto_route_demo/pages/screens/home_details_screen.dart' as _i1;
 import 'package:auto_route_demo/pages/screens/profile_details_screen.dart'
     as _i5;
-import 'package:auto_route_demo/pages/tabs/home_tab.dart' as _i1;
-import 'package:auto_route_demo/pages/tabs/main_tab.dart' as _i2;
-import 'package:auto_route_demo/pages/tabs/profile_tab.dart' as _i3;
-import 'package:auto_route_demo/routes/routes.dart' as _i6;
-import 'package:flutter/material.dart' as _i8;
+import 'package:auto_route_demo/pages/tabs/home_tab.dart' as _i2;
+import 'package:auto_route_demo/pages/tabs/main_tab.dart' as _i4;
+import 'package:auto_route_demo/pages/tabs/profile_tab.dart' as _i6;
+import 'package:auto_route_demo/routes/routes.dart' as _i3;
 
 abstract class $AppRouter extends _i7.RootStackRouter {
-  $AppRouter([_i8.GlobalKey<_i8.NavigatorState>? navigatorKey])
-      : super(navigatorKey);
+  $AppRouter({super.navigatorKey});
 
   @override
   final Map<String, _i7.PageFactory> pagesMap = {
+    HomeDetailsRoute.name: (routeData) {
+      return _i7.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i1.HomeDetailsPage(),
+      );
+    },
     HomeRouter.name: (routeData) {
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.HomeTab(),
+        child: const _i2.HomeTab(),
+      );
+    },
+    HomeTabRoute.name: (routeData) {
+      return _i7.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.HomeTabPage(),
       );
     },
     MainTabRoute.name: (routeData) {
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.MainTabPage(),
-      );
-    },
-    ProfileRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i3.ProfileTab(),
-      );
-    },
-    HomeDetailsRoute.name: (routeData) {
-      return _i7.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i4.HomeDetailsPage(),
+        child: const _i4.MainTabPage(),
       );
     },
     ProfileDetailsRoute.name: (routeData) {
@@ -54,23 +52,37 @@ abstract class $AppRouter extends _i7.RootStackRouter {
         child: const _i5.ProfileDetailsPage(),
       );
     },
-    HomeTabRoute.name: (routeData) {
+    ProfileRoute.name: (routeData) {
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.HomeTabPage(),
+        child: const _i6.ProfileTab(),
       );
     },
     ProfileTabRoute.name: (routeData) {
       return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.ProfileTabPage(),
+        child: const _i3.ProfileTabPage(),
       );
     },
   };
 }
 
 /// generated route for
-/// [_i1.HomeTab]
+/// [_i1.HomeDetailsPage]
+class HomeDetailsRoute extends _i7.PageRouteInfo<void> {
+  const HomeDetailsRoute({List<_i7.PageRouteInfo>? children})
+      : super(
+          HomeDetailsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeDetailsRoute';
+
+  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i2.HomeTab]
 class HomeRouter extends _i7.PageRouteInfo<void> {
   const HomeRouter({List<_i7.PageRouteInfo>? children})
       : super(
@@ -84,7 +96,21 @@ class HomeRouter extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.MainTabPage]
+/// [_i3.HomeTabPage]
+class HomeTabRoute extends _i7.PageRouteInfo<void> {
+  const HomeTabRoute({List<_i7.PageRouteInfo>? children})
+      : super(
+          HomeTabRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeTabRoute';
+
+  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i4.MainTabPage]
 class MainTabRoute extends _i7.PageRouteInfo<void> {
   const MainTabRoute({List<_i7.PageRouteInfo>? children})
       : super(
@@ -93,34 +119,6 @@ class MainTabRoute extends _i7.PageRouteInfo<void> {
         );
 
   static const String name = 'MainTabRoute';
-
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i3.ProfileTab]
-class ProfileRoute extends _i7.PageRouteInfo<void> {
-  const ProfileRoute({List<_i7.PageRouteInfo>? children})
-      : super(
-          ProfileRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ProfileRoute';
-
-  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i4.HomeDetailsPage]
-class HomeDetailsRoute extends _i7.PageRouteInfo<void> {
-  const HomeDetailsRoute({List<_i7.PageRouteInfo>? children})
-      : super(
-          HomeDetailsRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'HomeDetailsRoute';
 
   static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
 }
@@ -140,21 +138,21 @@ class ProfileDetailsRoute extends _i7.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.HomeTabPage]
-class HomeTabRoute extends _i7.PageRouteInfo<void> {
-  const HomeTabRoute({List<_i7.PageRouteInfo>? children})
+/// [_i6.ProfileTab]
+class ProfileRoute extends _i7.PageRouteInfo<void> {
+  const ProfileRoute({List<_i7.PageRouteInfo>? children})
       : super(
-          HomeTabRoute.name,
+          ProfileRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'HomeTabRoute';
+  static const String name = 'ProfileRoute';
 
   static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i6.ProfileTabPage]
+/// [_i3.ProfileTabPage]
 class ProfileTabRoute extends _i7.PageRouteInfo<void> {
   const ProfileTabRoute({List<_i7.PageRouteInfo>? children})
       : super(
